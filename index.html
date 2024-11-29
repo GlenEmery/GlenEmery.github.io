@@ -11,6 +11,7 @@
             height: 100%;
             font-family: 'Arial', sans-serif;
             scroll-behavior: smooth;
+            overscroll-behavior: none;
         }
 
         .page {
@@ -109,6 +110,7 @@
         const pages = document.querySelectorAll('.page');
         let currentPage = 0;
         let isTransitioning = false;
+        let startY = 0;
 
         function updatePagePositions() {
             pages.forEach((page, index) => {
@@ -122,6 +124,7 @@
             });
         }
 
+        // Desktop wheel event
         document.addEventListener('wheel', (e) => {
             if (isTransitioning) return;
 
@@ -131,6 +134,30 @@
                 updatePagePositions();
                 setTimeout(() => { isTransitioning = false; }, 1000);
             } else if (e.deltaY < 0 && currentPage > 0) {
+                isTransitioning = true;
+                currentPage--;
+                updatePagePositions();
+                setTimeout(() => { isTransitioning = false; }, 1000);
+            }
+        });
+
+        // Mobile touch events
+        document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isTransitioning) return;
+
+            const currentY = e.touches[0].clientY;
+            const diffY = startY - currentY;
+
+            if (diffY > 50 && currentPage < pages.length - 1) {
+                isTransitioning = true;
+                currentPage++;
+                updatePagePositions();
+                setTimeout(() => { isTransitioning = false; }, 1000);
+            } else if (diffY < -50 && currentPage > 0) {
                 isTransitioning = true;
                 currentPage--;
                 updatePagePositions();
