@@ -1,152 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel=¨stylesheet¨ type=¨text/css¨ href=¨style.css¨>
-	<script src="app.js"></script>
-</head>
-	<body>
-<div class="resume-wrapper">
-	<section class="profile section-padding">
-		<div class="container">
-			<div class="picture-resume-wrapper">
-        <div class="picture-resume">
-        <span><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" alt="" /></span>
-        <svg version="1.1" viewBox="0 0 350 350">
-  
-  <defs>
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
-    </filter>
-  </defs>
-  
-  
-<g filter="url(#goo)" >  
-  
-  <circle id="main_circle" class="st0" cx="171.5" cy="175.6" r="130"/>
-  
-  <circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble2 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble3 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble4 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble5 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble6 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble7 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble8 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble9 st1" cx="171.5" cy="175.6" r="122.7"/>
-  <circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6" r="122.7"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glen Emery - Portfolio</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-</g>  
-</svg>
-      </div>
-         <div class="clearfix"></div>
- </div>
-      <div class="name-wrapper">
-        <h1>Glen <br/>Emery</h1><!-- YOUR NAME AND LAST NAME  -->
-      </div>
-      <div class="clearfix"></div>
-      <div class="contact-info clearfix">
-      	<ul class="list-titles">
-      		<li>Call</li>
-      		<li>Mail</li>
-      		<li>Web</li>
-      		<li>Home</li>
-      	</ul>
-        <ul class="list-content ">
-        	<li>+34 123 456 789</li> <!-- YOUR PHONE NUMBER  -->
-        	<li>@gmail.com</li> <!-- YOUR EMAIL -->
-        	<li><a href="#"></a></li> <!-- YOUR WEBSITE  -->
-        	<li>London, UK</li> <!-- YOUR STATE AND COUNTRY  -->
-        </ul>
-      </div>
-      <div class="contact-presentation"> <!-- YOUR PRESENTATION RESUME  -->
-      	<p><span class="bold">Lorem</span> ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus. </p>
-      </div>
-      <div class="contact-social clearfix">
-      	<ul class="list-titles">
-      		<li>Twitter</li>
-      		<li>Dribbble</li>
-      		<li>Codepen</li>
-      	</ul>
-        <ul class="list-content"> <!-- REMEMBER TO PUT THE URL ON THE HREF TAG  -->
-      		<li><a href=""></a></li> <!-- YOUR TWITTER USER  -->
-      		<li><a href=""></a></li> <!-- YOUR DRIBBBLE USER  -->
-      		<li><a href=""></a></li> <!-- YOUR BEHANCE USER  -->
-      	</ul>
-      </div>
-		</div>
-	</section>
-  
-  <section class="experience section-padding">
-  	<div class="container">
-  		<h3 class="experience-title">Experience</h3>
-      
-      <div class="experience-wrapper">
-      	<div class="company-wrapper clearfix">
-      		<div class="experience-title">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-          <div class="time">Nov 2012 - Present</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-      	</div>
-        
-        <div class="job-wrapper clearfix">
-        	<div class="experience-title">Front End Developer </div> <!-- JOB TITLE  -->
-          <div class="company-description">
-          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION  -->
-          </div>
+        .page {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background-color: #121212;
+            color: #E0E0E0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #1E88E5;
+        }
+
+        .page-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #1E88E5;
+            margin-bottom: 30px;
+        }
+
+        .content-list {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+        }
+
+        .content-list li {
+            background-color: #2C2C2C;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header" class="page">
+        <div class="page-content">
+            <img src="placeholder.jpg" alt="Glen Emery" class="profile-img">
+            <h1>Glen Emery</h1>
         </div>
-        
-        <div class="company-wrapper clearfix">
-      		<div class="experience-title">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-          <div class="time">Nov 2010 - Present</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-      	</div>
-        
-         <div class="job-wrapper clearfix">
-        	<div class="experience-title">Freelance, Web Designer / Web Developer</div> <!-- JOB TITLE  -->
-          <div class="company-description">
-          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION  -->
-          </div>
+    </div>
+
+    <div id="skills" class="page">
+        <div class="page-content">
+            <h2 class="section-title">Skills</h2>
+            <ul class="content-list">
+                <li>Web Development</li>
+                <li>Programming Languages</li>
+                <li>Project Management</li>
+            </ul>
         </div>
-        
-        <div class="company-wrapper clearfix">
-      		<div class="experience-title">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-          <div class="time">Nov 2009 - Nov 2010</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-      	</div> 
-        
-         <div class="job-wrapper clearfix">
-        	<div class="experience-title">Web Designer </div> <!-- JOB TITLE  -->
-          <div class="company-description">
-          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>   <!-- JOB DESCRIPTION  -->
-          </div>
+    </div>
+
+    <div id="experience" class="page">
+        <div class="page-content">
+            <h2 class="section-title">Experience</h2>
+            <ul class="content-list">
+                <li>
+                    <h3>Job Title</h3>
+                    <p>Company Name</p>
+                    <p>Job Description</p>
+                </li>
+            </ul>
         </div>
-        
-      </div><!--Skill experience-->
-      
-      <div class="section-wrapper clearfix">
-      	<h3 class="section-title">Skills</h3>  <!-- YOUR SET OF SKILLS  -->
-        	<ul>
-        		<li class="skill-percentage">HTML / HTML5</li>
-        		<li class="skill-percentage">CSS / CSS3 / SASS / LESS</li>
-        		<li class="skill-percentage">Javascript</li>
-        		<li class="skill-percentage">Jquery</li>
-        		<li class="skill-percentage">Wordpress</li>
-        		<li class="skill-percentage">Photoshop</li>
-            
-        	</ul>
-        
-      </div>
-      
-      <div class="section-wrapper clearfix">
-        <h3 class="section-title">Hobbies</h3>  <!-- DESCRIPTION OF YOUR HOBBIES -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
-        
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p> 
-      </div>
-      
-  	</div>
-  </section>
-  
-  <div class="clearfix"></div>
-</div>
-	</body>
+    </div>
+
+    <div id="education" class="page">
+        <div class="page-content">
+            <h2 class="section-title">Education</h2>
+            <ul class="content-list">
+                <li>
+                    <h3>Degree</h3>
+                    <p>Institution</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+        let isTransitioning = false;
+
+        function updatePagePositions() {
+            pages.forEach((page, index) => {
+                if (index < currentPage) {
+                    page.style.transform = 'translateY(-100%)';
+                } else if (index > currentPage) {
+                    page.style.transform = 'translateY(100%)';
+                } else {
+                    page.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        document.addEventListener('wheel', (e) => {
+            if (isTransitioning) return;
+
+            if (e.deltaY > 0 && currentPage < pages.length - 1) {
+                isTransitioning = true;
+                currentPage++;
+                updatePagePositions();
+                setTimeout(() => { isTransitioning = false; }, 1000);
+            } else if (e.deltaY < 0 && currentPage > 0) {
+                isTransitioning = true;
+                currentPage--;
+                updatePagePositions();
+                setTimeout(() => { isTransitioning = false; }, 1000);
+            }
+        });
+
+        // Initial positioning
+        updatePagePositions();
+    </script>
+</body>
 </html>
