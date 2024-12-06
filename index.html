@@ -40,6 +40,9 @@
         .page-content {
             text-align: center;
             padding: 20px;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
         }
 
         .section-title {
@@ -48,20 +51,8 @@
             margin-bottom: 30px;
         }
 
-        .content-list {
-            list-style-type: none;
-            padding: 0;
-            max-width: 600px;
-        }
-
-        .content-list li {
-            background-color: #2C2C2C;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .skills-container {
+        /* Shared container styles */
+        .flex-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -71,23 +62,54 @@
             margin: 0 auto;
         }
 
-        .skills-item {
+        .flex-item {
             background-color: #2C2C2C;
-            padding: 10px 15px;
+            padding: 15px;
             border-radius: 5px;
             flex: 0 1 calc(33.333% - 15px);
             text-align: center;
             box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Mobile navigation styles */
+        .mobile-nav {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            .skills-item {
+            .flex-item {
                 flex: 0 1 calc(50% - 15px);
+            }
+
+            .mobile-nav {
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                bottom: -50px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .mobile-nav-btn {
+                background-color: #1E88E5;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .mobile-nav-btn:disabled {
+                background-color: #555;
+                cursor: not-allowed;
             }
         }
 
         @media (max-width: 480px) {
-            .skills-item {
+            .flex-item {
                 flex: 0 1 100%;
             }
         }
@@ -104,13 +126,13 @@
     <div id="skills" class="page">
         <div class="page-content">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-container">
-                <div class="skills-item">Web Development</div>
-                <div class="skills-item">Programming Languages</div>
-                <div class="skills-item">Project Management</div>
-                <div class="skills-item">Data Analysis</div>
-                <div class="skills-item">Problem Solving</div>
-                <div class="skills-item">Communication</div>
+            <div class="flex-container">
+                <div class="flex-item">Web Development</div>
+                <div class="flex-item">Programming Languages</div>
+                <div class="flex-item">Project Management</div>
+                <div class="flex-item">Data Analysis</div>
+                <div class="flex-item">Problem Solving</div>
+                <div class="flex-item">Communication</div>
             </div>
         </div>
     </div>
@@ -118,25 +140,54 @@
     <div id="experience" class="page">
         <div class="page-content">
             <h2 class="section-title">Experience</h2>
-            <ul class="content-list">
-                <li>
-                    <h3>Job Title</h3>
-                    <p>Company Name</p>
-                    <p>Job Description</p>
-                </li>
-            </ul>
+            <div class="flex-container" id="experienceContainer">
+                <div class="flex-item">
+                    <h3>Software Engineer</h3>
+                    <p>Tech Innovations Inc.</p>
+                    <p>Developed web applications</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Project Manager</h3>
+                    <p>Global Solutions LLC</p>
+                    <p>Led cross-functional teams</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Data Analyst</h3>
+                    <p>Research Dynamics</p>
+                    <p>Conducted complex data analysis</p>
+                </div>
+            </div>
+            <div class="mobile-nav">
+                <button class="mobile-nav-btn" id="prevExperience" disabled>Previous</button>
+                <button class="mobile-nav-btn" id="nextExperience">Next</button>
+            </div>
         </div>
     </div>
 
     <div id="education" class="page">
         <div class="page-content">
             <h2 class="section-title">Education</h2>
-            <ul class="content-list">
-                <li>
-                    <h3>Degree</h3>
-                    <p>Institution</p>
-                </li>
-            </ul>
+            <div class="flex-container" id="educationContainer">
+                <div class="flex-item">
+                    <h3>Bachelor of Science</h3>
+                    <p>Computer Science</p>
+                    <p>University of Technology</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Master's Degree</h3>
+                    <p>Data Science</p>
+                    <p>Advanced Research Institute</p>
+                </div>
+                <div class="flex-item">
+                    <h3>Certification</h3>
+                    <p>Project Management Professional</p>
+                    <p>PMI Certification</p>
+                </div>
+            </div>
+            <div class="mobile-nav">
+                <button class="mobile-nav-btn" id="prevEducation" disabled>Previous</button>
+                <button class="mobile-nav-btn" id="nextEducation">Next</button>
+            </div>
         </div>
     </div>
 
@@ -158,6 +209,76 @@
             });
         }
 
+        // Mobile Navigation for Experience
+        const experienceContainer = document.getElementById('experienceContainer');
+        const prevExperienceBtn = document.getElementById('prevExperience');
+        const nextExperienceBtn = document.getElementById('nextExperience');
+        let currentExperienceIndex = 0;
+
+        function updateExperienceVisibility() {
+            const items = experienceContainer.querySelectorAll('.flex-item');
+            items.forEach((item, index) => {
+                item.style.display = index === currentExperienceIndex ? 'block' : 'none';
+            });
+
+            prevExperienceBtn.disabled = currentExperienceIndex === 0;
+            nextExperienceBtn.disabled = currentExperienceIndex === items.length - 1;
+        }
+
+        prevExperienceBtn.addEventListener('click', () => {
+            if (currentExperienceIndex > 0) {
+                currentExperienceIndex--;
+                updateExperienceVisibility();
+            }
+        });
+
+        nextExperienceBtn.addEventListener('click', () => {
+            const items = experienceContainer.querySelectorAll('.flex-item');
+            if (currentExperienceIndex < items.length - 1) {
+                currentExperienceIndex++;
+                updateExperienceVisibility();
+            }
+        });
+
+        // Mobile Navigation for Education
+        const educationContainer = document.getElementById('educationContainer');
+        const prevEducationBtn = document.getElementById('prevEducation');
+        const nextEducationBtn = document.getElementById('nextEducation');
+        let currentEducationIndex = 0;
+
+        function updateEducationVisibility() {
+            const items = educationContainer.querySelectorAll('.flex-item');
+            items.forEach((item, index) => {
+                item.style.display = index === currentEducationIndex ? 'block' : 'none';
+            });
+
+            prevEducationBtn.disabled = currentEducationIndex === 0;
+            nextEducationBtn.disabled = currentEducationIndex === items.length - 1;
+        }
+
+        prevEducationBtn.addEventListener('click', () => {
+            if (currentEducationIndex > 0) {
+                currentEducationIndex--;
+                updateEducationVisibility();
+            }
+        });
+
+        nextEducationBtn.addEventListener('click', () => {
+            const items = educationContainer.querySelectorAll('.flex-item');
+            if (currentEducationIndex < items.length - 1) {
+                currentEducationIndex++;
+                updateEducationVisibility();
+            }
+        });
+
+        // Initial setup for mobile view
+        function setupMobileView() {
+            if (window.innerWidth <= 768) {
+                updateExperienceVisibility();
+                updateEducationVisibility();
+            }
+        }
+
         // Desktop wheel event
         document.addEventListener('wheel', (e) => {
             if (isTransitioning) return;
@@ -166,12 +287,18 @@
                 isTransitioning = true;
                 currentPage++;
                 updatePagePositions();
-                setTimeout(() => { isTransitioning = false; }, 1000);
+                setTimeout(() => { 
+                    isTransitioning = false; 
+                    setupMobileView();
+                }, 1000);
             } else if (e.deltaY < 0 && currentPage > 0) {
                 isTransitioning = true;
                 currentPage--;
                 updatePagePositions();
-                setTimeout(() => { isTransitioning = false; }, 1000);
+                setTimeout(() => { 
+                    isTransitioning = false; 
+                    setupMobileView();
+                }, 1000);
             }
         });
 
@@ -190,17 +317,25 @@
                 isTransitioning = true;
                 currentPage++;
                 updatePagePositions();
-                setTimeout(() => { isTransitioning = false; }, 1000);
+                setTimeout(() => { 
+                    isTransitioning = false; 
+                    setupMobileView();
+                }, 1000);
             } else if (diffY < -50 && currentPage > 0) {
                 isTransitioning = true;
                 currentPage--;
                 updatePagePositions();
-                setTimeout(() => { isTransitioning = false; }, 1000);
+                setTimeout(() => { 
+                    isTransitioning = false; 
+                    setupMobileView();
+                }, 1000);
             }
         });
 
-        // Initial positioning
+        // Initial positioning and mobile setup
         updatePagePositions();
+        window.addEventListener('resize', setupMobileView);
+        setupMobileView();
     </script>
 </body>
 </html>
