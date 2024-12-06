@@ -336,6 +336,62 @@
         updatePagePositions();
         window.addEventListener('resize', setupMobileView);
         setupMobileView();
+
+        function setupMobileView() {
+    const isMobile = window.innerWidth <= 768;
+    
+    // Experience section handling
+    const experienceContainer = document.getElementById('experienceContainer');
+    const experienceItems = experienceContainer.querySelectorAll('.flex-item');
+    const prevExperienceBtn = document.getElementById('prevExperience');
+    const nextExperienceBtn = document.getElementById('nextExperience');
+
+    // Education section handling
+    const educationContainer = document.getElementById('educationContainer');
+    const educationItems = educationContainer.querySelectorAll('.flex-item');
+    const prevEducationBtn = document.getElementById('prevEducation');
+    const nextEducationBtn = document.getElementById('nextEducation');
+
+    if (isMobile) {
+        // Mobile view - show only first item and enable navigation
+        experienceItems.forEach((item, index) => {
+            item.style.display = index === 0 ? 'block' : 'none';
+        });
+        prevExperienceBtn.disabled = true;
+        nextExperienceBtn.disabled = experienceItems.length <= 1;
+
+        educationItems.forEach((item, index) => {
+            item.style.display = index === 0 ? 'block' : 'none';
+        });
+        prevEducationBtn.disabled = true;
+        nextEducationBtn.disabled = educationItems.length <= 1;
+
+        // Show mobile navigation
+        document.querySelectorAll('.mobile-nav').forEach(nav => {
+            nav.style.display = 'flex';
+        });
+    } else {
+        // Desktop view - show all items
+        experienceItems.forEach(item => {
+            item.style.display = 'block';
+        });
+        educationItems.forEach(item => {
+            item.style.display = 'block';
+        });
+
+        // Hide mobile navigation
+        document.querySelectorAll('.mobile-nav').forEach(nav => {
+            nav.style.display = 'none';
+        });
+
+        // Reset mobile navigation state
+        currentExperienceIndex = 0;
+        currentEducationIndex = 0;
+    }
+}
+
+window.addEventListener('resize', setupMobileView);
+window.addEventListener('load', setupMobileView);
     </script>
 </body>
 </html>
